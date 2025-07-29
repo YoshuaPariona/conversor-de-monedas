@@ -1,8 +1,14 @@
+
 public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("Hola Mundo");
+        ApiClient apiClient = new ApiClient();
+
+        Double conversionRate = apiClient.ObtainConversionRate("PEN", "USD");
+
+        System.out.println(conversionRate);    
+
         
     }
 }
