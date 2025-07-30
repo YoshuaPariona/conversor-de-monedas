@@ -4,7 +4,9 @@ public class Main {
 
     public static void main(String[] args) {
         
-        System.out.print("""
+        Integer option = 0;
+        String menu ="""
+        
             Bienvenido al Conversor de Monedas
 
             1) Sol peruano    ==> Dolar
@@ -15,20 +17,36 @@ public class Main {
             6) Dolar          ==> Real brasileño
             7) Boliviano      ==> Dolar
             8) Dolar          ==> Boliviano
+            9) Salir
 
-            0) Salir
-
-            Escoge una opción: """
-            );
+            Escoge una opción:  """;
         Scanner userInput = new Scanner(System.in);
+
+        while (option != 9) {
+            System.out.print(menu);
+            option = userInput.nextInt();
+            
+            if(option < 1 || option > 9) {
+                System.out.println("opción inválida");
+                break;
+            } else if (option == 9) {
+                System.out.println("Saliendo del programa.");
+                break;
+            }
+            System.out.println("aver");
+
+            Currency currency = new Currency(option);
+
+            System.out.print("Ingrese la cantidad de "+currency.nameActualCurrency+": ");
+            Double targetCurrencyResult = (double)Math.round(userInput.nextDouble()*currency.getConversionRate() * 100d) / 100d;
+
+            System.out.println("El tipo de cambio es: "+currency.getConversionRate());
+            System.out.println("Esa cantidad equivale a "+targetCurrencyResult+" "+currency.nameTargetCurrency+".");
+
+        }
+
+        userInput.close();
         
-        Currency currency = new Currency(userInput.nextInt());
-
-        System.out.print("Ingrese la cantidad de "+currency.nameActualCurrency+": ");
-        Double targetCurrencyResult = (double)Math.round(userInput.nextDouble()*currency.getConversionRate() * 100d) / 100d;
-
-        System.out.println("El tipo de cambio es: "+currency.getConversionRate());
-        System.out.println("Esa cantidad equivale a "+targetCurrencyResult+" "+currency.nameTargetCurrency+".");
         
     }
 }

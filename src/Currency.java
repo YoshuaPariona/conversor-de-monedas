@@ -37,9 +37,6 @@ public class Currency extends ApiClient{
                 super.actualCurrency = "USD";
                 super.targetCurrency = "BRL";
                 break;
-            default:
-                break;
-            
             }
         this.nameActualCurrency = getName(actualCurrency);
         this.nameTargetCurrency = getName(targetCurrency);
@@ -53,7 +50,7 @@ public class Currency extends ApiClient{
                 name = "soles";
                 break;
             case "USD":
-                name = "dolares";
+                name = "dólares";
                 break;
             case "ARS":
                 name = "pesos argentinos";
@@ -63,9 +60,6 @@ public class Currency extends ApiClient{
                 break;
             case "BRL":
                 name = "reales brasileños";
-                break;
-            default:
-                name = "none";
                 break;
         }
         return name;
