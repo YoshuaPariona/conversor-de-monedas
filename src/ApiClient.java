@@ -10,7 +10,7 @@ import com.google.gson.GsonBuilder;
 public class ApiClient {
     private String actualCurrency;
     private String targetCurrency;
-    private final String ApiKey = "1f20803e8746298072532a0c";
+    private final String API_KEY = "1f20803e8746298072532a0c";
     private ApiResponse apiResponse;
     
     public ApiClient(String actualCurrency, String targetCurrency) {
@@ -26,13 +26,13 @@ public class ApiClient {
         HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://v6.exchangerate-api.com/v6/"+this.ApiKey+"/pair/"+actualCurrency+"/"+targetCurrency))
+            .uri(URI.create("https://v6.exchangerate-api.com/v6/"+this.API_KEY+"/pair/"+actualCurrency+"/"+targetCurrency))
             .build();
             
         try {
             HttpResponse<String> response = client
                 .send(request, HttpResponse.BodyHandlers.ofString());
-
+            System.out.println(response.body());
             apiResponse = gson.fromJson(response.body(), ApiResponse.class);
 
         } catch (IOException e) {
@@ -50,4 +50,5 @@ public class ApiClient {
         }
         return apiResponse.conversion_rate();
     }
+
 }
