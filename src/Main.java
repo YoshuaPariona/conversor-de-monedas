@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         
-        System.out.println("""
+        System.out.print("""
             Bienvenido al Conversor de Monedas
 
             1) Sol peruano    ==> Dolar
@@ -18,17 +18,17 @@ public class Main {
 
             0) Salir
 
-            Escoge una opción: 
-            """);
+            Escoge una opción: """
+            );
         Scanner userInput = new Scanner(System.in);
-        SetCurrency currency = new SetCurrency(userInput.nextInt());
+        
+        Currency currency = new Currency(userInput.nextInt());
 
-        System.out.println("Ingrese la cantidad de "+currency.nameActualCurrency+": ");
-        Double amountCurrency = userInput.nextDouble();
+        System.out.print("Ingrese la cantidad de "+currency.nameActualCurrency+": ");
+        Double targetCurrencyResult = (double)Math.round(userInput.nextDouble()*currency.getConversionRate() * 100d) / 100d;
 
-        ApiClient apiClient = new ApiClient(currency.codeActualCurrency, currency.codeTargetCurrency);
-        System.out.println("El tipo de cambio es: "+apiClient.getConversionRate());
-        System.out.println("Esa cantidad equivale a "+amountCurrency*apiClient.getConversionRate()+" "+currency.nameTargetCurrency);
+        System.out.println("El tipo de cambio es: "+currency.getConversionRate());
+        System.out.println("Esa cantidad equivale a "+targetCurrencyResult+" "+currency.nameTargetCurrency+".");
         
     }
 }

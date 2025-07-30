@@ -8,16 +8,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class ApiClient {
-    private String actualCurrency;
-    private String targetCurrency;
+    protected String actualCurrency;
+    protected String targetCurrency;
     private final String API_KEY = "1f20803e8746298072532a0c";
-    private ApiResponse apiResponse;
+    protected ApiResponse apiResponse;
     
-    public ApiClient(String actualCurrency, String targetCurrency) {
-        this.actualCurrency = actualCurrency;
-        this.targetCurrency = targetCurrency;
-    }
-
     public ApiResponse getApiResponse() {
 
         Gson gson = new GsonBuilder()
@@ -32,7 +27,6 @@ public class ApiClient {
         try {
             HttpResponse<String> response = client
                 .send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println(response.body());
             apiResponse = gson.fromJson(response.body(), ApiResponse.class);
 
         } catch (IOException e) {
@@ -44,11 +38,6 @@ public class ApiClient {
         return apiResponse;
     }
         
-    public Double getConversionRate () {
-        if (apiResponse ==null) {
-            getApiResponse();
-        }
-        return apiResponse.conversion_rate();
-    }
+
 
 }
