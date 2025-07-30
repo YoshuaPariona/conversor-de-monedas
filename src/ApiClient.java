@@ -8,12 +8,18 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class ApiClient {
+    private String actualCurrency;
+    private String targetCurrency;
+    private final String ApiKey = "1f20803e8746298072532a0c";
+    private ApiResponse apiResponse;
+    
+    public ApiClient(String actualCurrency, String targetCurrency) {
+        this.actualCurrency = actualCurrency;
+        this.targetCurrency = targetCurrency;
+    }
 
-    Double conversionRate = 0.0;
-    String ApiKey = "1f20803e8746298072532a0c";
-    
-    public Double ObtainConversionRate (String actualCurrency, String targetCurrency) {
-    
+    public ApiResponse getApiResponse() {
+
         Gson gson = new GsonBuilder()
             .create();
 
@@ -27,16 +33,21 @@ public class ApiClient {
             HttpResponse<String> response = client
                 .send(request, HttpResponse.BodyHandlers.ofString());
 
-            ApiResponse apiResponse = gson.fromJson(response.body(), ApiResponse.class);
-
-            conversionRate = apiResponse.conversion_rate();
+            apiResponse = gson.fromJson(response.body(), ApiResponse.class);
 
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return conversionRate;
+        
+        return apiResponse;
     }
         
+    public Double getConversionRate () {
+        if (apiResponse ==null) {
+            getApiResponse();
+        }
+        return apiResponse.conversion_rate();
+    }
 }

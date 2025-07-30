@@ -3,9 +3,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ApiClient apiClient = new ApiClient();
+        ApiClient apiClient = new ApiClient("PEN", "USD");
 
-        Double conversionRate = apiClient.ObtainConversionRate("PEN", "USD");
+
+        Double conversionRate = apiClient.getConversionRate();
 
         System.out.println(conversionRate);    
 
