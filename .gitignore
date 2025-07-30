@@ -1,34 +1,9 @@
-# Java build
-*.class
-*.jar
-*.war
-*.ear
-
 # Compilación de dependencias
 /lib/
-/out/
 /bin/
 
-# VS Code settings
+# VS Code
 .vscode/
 
-# Archivos de sistema Windows
-Thumbs.db
-.DS_Store
-
-# Archivos temporales
-*.log
-*.tmp
-*.swp
-
-# Archivos de proyecto de IDEs comunes (Eclipse, IntelliJ, etc.)
-*.iml
-*.ipr
-*.iws
-.idea/
-.classpath
-.project
-.settings/
-
 # Librerías externas
-libs/*.jar
+config.properties

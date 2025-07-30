@@ -33,20 +33,16 @@ public class Main {
                 System.out.println("Saliendo del programa.");
                 break;
             }
-            System.out.println("aver");
 
             Currency currency = new Currency(option);
 
             System.out.print("Ingrese la cantidad de "+currency.nameActualCurrency+": ");
             Double targetCurrencyResult = (double)Math.round(userInput.nextDouble()*currency.getConversionRate() * 100d) / 100d;
 
-            System.out.println("El tipo de cambio es: "+currency.getConversionRate());
-            System.out.println("Esa cantidad equivale a "+targetCurrencyResult+" "+currency.nameTargetCurrency+".");
-
+            System.out.println("Esa cantidad equivale a "+targetCurrencyResult+" "+currency.nameTargetCurrency+", con un tipo de cambio de "+currency.getConversionRate());
         }
 
         userInput.close();
-        
-        
+
     }
 }
