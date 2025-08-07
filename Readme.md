@@ -25,7 +25,8 @@ Este proyecto fue creado para completar el challenge ONE G8 Backend - conversor 
 1. Clona el repositorio:
 
    ```bash
-   git clone https://github.com/tu-usuario/conversor-monedas.git
+   git clone https://github.com/YoshuaPariona/challenge-conversor-de-monedas.git
+   
    cd conversor-monedas
    ```
 
